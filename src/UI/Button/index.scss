@@ -1,0 +1,24 @@
+.button-container{
+    color: #ffffff;
+    display: flex;
+}
+
+.button{
+    padding: 10px 20px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    background-color:#338DC6;
+    color: #ffffff;
+    font-size: 15px;
+    &__image{
+        border: 2px solid #DEDFE3;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        border-left: none;
+        &-container{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
