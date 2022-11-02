@@ -2,6 +2,10 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    &__container{
+      display: flex;
+      gap: 20px;
+    }
     &__wrapper {
       display: flex;
       flex-direction: column;
@@ -27,5 +31,18 @@
       width: 100%;
       justify-content: space-between;
     }
+    &__tool{
+      position: fixed;
+      z-index: 2;
+      width: 30px;
+      height: 60px;
+    }
   }
-  
+
+.triangle {
+  border-left: solid 30px rgb(200,30,50);
+  border-bottom: solid 30px transparent;
+  border-top: solid 30px transparent;
+  position: relative;
+  z-index: 2;
+}
