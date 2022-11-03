@@ -11,8 +11,8 @@ const hotelDataURL =
 
 export const getHotelData = async () => {
   try {
-    const res = await fetch(`${hotelDataURL}`, hotelDataOptions);
-    return await res.json();
+    const res = await fetch(`${hotelDataURL}`, hotelDataOptions); 
+    return await res.json()
   } catch (error) {
     if (error instanceof Error) {
       console.error(`Couldn't fetch location.`, error.message);
