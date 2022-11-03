@@ -13,18 +13,19 @@ import { Button } from "./UI/Button/index";
 import { Header } from "./components/Header";
 import { getHotelData } from "./getHotelsData";
 
-const url = 'http://engine.hotellook.com/api/v2/lookup.json?query=london&lang=en&lookFor=both&limit=10';
-const resoult = fetch(url);
-
 function App() {
   const [center, setCenter] = useState([51.505, -0.09]);
-  // const [hotels, setHotels] = useState({});
-  // useEffect(() => {
-  //   getHotelData().then((res) => {
-  //     setHotels(res);
-  //   });
-  //   console.log(hotels);
-  // }, []);
+  const [hotels, setHotels] = useState([]);
+  useEffect(() => {
+    getHotelData()
+      .then((res) => {
+        setHotels(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    console.log(hotels);
+  }, []);
   return (
     <div className="App">
       <MapContainer
@@ -46,9 +47,11 @@ function App() {
       </MapContainer>
       <Header center={center} />
       <Aside />
-      {}
+      <div>
+        
+      </div> 
     </div>
   );
-}
+} 
 
 export default App;
