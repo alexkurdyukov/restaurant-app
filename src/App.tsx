@@ -3,42 +3,40 @@ import ".//assets/scss/index.scss";
 import {
   MapContainer,
   TileLayer,
-  useMap,
   Marker,
   Popup,
   ZoomControl,
 } from "react-leaflet";
 import { Aside } from ".//components/Aside/index";
-import { Button } from "./UI/Button/index";
 import { Header } from "./components/Header";
 import { getHotelData } from "./getHotelsData";
 
-const hotelDataOptions = {
-  method: "GET",
-  headers: {
-    "X-RapidAPI-Key": "5dac77ef2amsh8eb3f04c38b7ddep18ae4ejsn6efe878d52c6",
-    "X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
-  },
-};
+interface hotelDataTypes{
+  result_object: {
+    latitude: string;
+    longitude: string;
+    location_string: string;
+    name: string;
+    geo_description: string;
+    photo: {
+      images:{
+        medium:{
+          width: string;
+          height: string;
+          url: string;
+        }
+      }
+    }
+  }
+}
 
-function App() {
+const App = () => {
   const [center, setCenter] = useState([51.505, -0.09]);
   const [hotels, setHotels] = useState([]);
-  // useEffect(() => {
-  //   fetch(
-  //     `https://travel-advisor.p.rapidapi.com/locations/search?query=pattaya&limit=30&offset=0&units=km&location_id=1&currency=USD&sort=relevance&lang=en_US`,
-  //     hotelDataOptions
-  //   ).then(res => {
-  //     return res.json()
-  //   }).then(data => {
-  //     setHotels(data)
-  //     console.log(hotels)
-  //   })
-  // },[]);
   useEffect(() => {
     getHotelData().then((res) => {
       setHotels(res.data);
-      console.log(res);
+      console.log(res.data);
     });
   }, []);
   return (
@@ -59,10 +57,23 @@ function App() {
           </Popup>
         </Marker>
         <ZoomControl position="bottomright" />
-      </MapContainer>
+      </MapContainer> 
       <Header center={center} />
       <Aside />
-      <div className="massive">{}</div>
+      <div className="massive">
+        {/* {hotels?.data.map((hotel: any, index: number) => {
+            <Marker key={index}
+              position={[
+                hotel.result_object.latitude,
+                hotel.result_object.longitude,
+              ]}
+            >
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Marker>;
+          })} */}
+      </div>
     </div>
   );
 }
