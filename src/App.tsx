@@ -95,12 +95,13 @@ interface hotelDataTypes {
 const App = () => {
   const [center, setCenter] = useState<number[]>([51.505, -0.09]);
   const [hotels, setHotels] = useState<hotelDataTypes | null>(null);
-  useEffect(() => {
-    getHotelData().then((res) => {
-      setHotels(res);
-      console.log(res);
-    });
-  }, []);
+  const [zoom,setZoom] = useState<number>(3);
+  // useEffect(() => {
+  //   getHotelData().then((res) => {
+  //     setHotels(res);
+  //     console.log(res);
+  //   });
+  // }, []);
   return (
     <div className="App">
       <MapContainer

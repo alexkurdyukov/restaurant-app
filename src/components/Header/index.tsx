@@ -7,7 +7,7 @@ const Header = (center: CenterProps) => {
   return (
     <header className="header">
       <div className="header__wrapper wrapper">
-        <span className="header__title">Interactive Resraraunt Map</span>
+        <span className="header__title">Interactive Hotel Map</span>
         <label className="header__search">
           <input placeholder="Enter your location" className="header__input" />
           <div className="header__search-icon">
