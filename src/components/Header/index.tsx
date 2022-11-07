@@ -1,15 +1,22 @@
+import searchLogo from '../../assets/images/searchIcon.svg'
+
 export interface CenterProps {
   center: number[];
   setCenter?: React.Dispatch<React.SetStateAction<number[]>>;
+  setSearch: (search: string) => void;
 }
 
-const Header = (center: CenterProps) => {
+const Header = ({center,setSearch}: CenterProps) => {
   return (
     <header className="header">
       <div className="header__wrapper wrapper">
         <span className="header__title">Interactive Hotel Map</span>
         <label className="header__search">
-          <input placeholder="Enter your location" className="header__input" />
+          <input 
+            placeholder="Enter your location" 
+            className="header__input" 
+            onChange={(e) => setSearch(e.target.value)}
+          />
           <div className="header__search-icon">
             <svg
               width="24"
