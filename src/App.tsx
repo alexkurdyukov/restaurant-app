@@ -106,8 +106,6 @@ const App = () => {
 			getHotels(debouncedSearch).then((res: any)=>{
 				setHotels(res);
 				setLoading(false);
-				console.log(search);
-				console.log(hotels);
 			})
 		}
 	},[debouncedSearch])
@@ -123,7 +121,7 @@ const App = () => {
 					attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
 					url="https://api.mapbox.com/styles/v1/larinkirv/ckyllcuwg75jp15pwgjud5ldf/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibGFyaW5raXJ2IiwiYSI6ImNreWxsOXE1YTM3ZTMyd284czZ3N3hnOWcifQ.-IMprWO32bAuJjJQn_uawA"
 				/>
-				{/* {hotels?.data.map((hotel, index): any => (
+				{hotels?.data.map((hotel, index): any => (
 					<Marker
 						key={index}
 						position={[
@@ -151,7 +149,7 @@ const App = () => {
 							</div>
 						</Popup>
 					</Marker>
-				))} */}
+				))}
 				<ZoomControl position="bottomright" />
 			</MapContainer>
 			<Header setSearch={setSearch}  center={center} />

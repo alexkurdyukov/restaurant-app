@@ -7,8 +7,8 @@ const options = {
 };
 
 export const getHotels = async (city: string) => {
-	let hotelDataURL = `https://travel-advisor.p.rapidapi.com/locations/v2/auto-complete?query=${city}&lang=en_US&units=km`,
-		options;
-	const data = await fetch(hotelDataURL);
+	let hotelDataURL = `https://travel-advisor.p.rapidapi.com/locations/search?query=${city}&limit=30&offset=0&units=km&location_id=1&currency=USD&sort=relevance&lang=en_US`
+	const data = await fetch(hotelDataURL, options);
 	const response = await data.json();
+	return( response )
 };
