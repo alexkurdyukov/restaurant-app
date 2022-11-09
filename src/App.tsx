@@ -10,8 +10,9 @@ import {
 import { Aside } from ".//components/Aside/index";
 import { Header } from "./components/Header";
 import { getHotelData } from "./getHotelsData";
-import useDebounce from "./assets/utils/debounce";
+
 import { getHotels } from "./utils/getHotels";
+import useDebounce from "./utils/useDebounce";
 
 interface hotelDataTypes {
 	data: {
@@ -154,6 +155,8 @@ const App = () => {
 			</MapContainer>
 			<Header setSearch={setSearch}  center={center} />
 		</div>
+		// найди через редюс среднюю широту и долготу
+		// настроить loader, верстка + логика через отрисовку по условию
 	);
 };
 
