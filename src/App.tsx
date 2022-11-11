@@ -100,66 +100,104 @@ const App = () => {
 	const [hotels, setHotels] = useState<hotelDataTypes | null>(null);
 	const [search, setSearch] = useState<string | null>(null);
 	const [loading, setLoading] = useState<boolean>(false);
-  	const debouncedSearch = useDebounce(search,1000);
-	useEffect(()=>{
-		if (debouncedSearch){
+	const debouncedSearch = useDebounce(search, 1000);
+	
+	const calculateCenter = () => {
+		let latArray:number[] = [];
+		let lonArray:number[] = [];
+		hotels?.data.forEach(hotel => {
+			latArray.push(Number(hotel.result_object.latitude));
+			lonArray.push(Number(hotel.result_object.longitude));
+		})
+		latArray.sort();
+		lonArray.sort();
+		let latCenter = latArray[latArray.length/2];
+		let lonCenter = lonArray[latArray.length/2];
+		return([latCenter,lonCenter])
+	}
+	
+	useEffect(() => {
+		if (debouncedSearch) {
 			setLoading(true);
-			getHotels(debouncedSearch).then((res: any)=>{
+			getHotels(debouncedSearch).then((res: any) => {
 				setHotels(res);
 				setLoading(false);
-			})
-		}
-	},[debouncedSearch])
+				console.log(res.data);
+				setCenter(calculateCenter)
+				console.log(`центр: ` + center)
+			});
+		} 
+	}, [debouncedSearch]);
+	
+	const centerCoordinates = hotels?.data.reduce(
+		(acc: any, currentHotel: any): any => {
+			acc = {
+				lat: acc.lat + Number(currentHotel.result_object.latitude),
+				lon: acc.lon + Number(currentHotel.result_object.longitude),
+			};
+			return (acc = {
+				lat: acc.lat / hotels.data.length,
+				lon: acc.lon / hotels.data.length,
+			});
+		},
+		{ lat: 0, lon: 0 }
+	);
+	
 	return (
 		<div className="App">
 			<MapContainer
 				center={[51.505, -0.09]}
-				zoom={3} 
+				zoom={3}
 				zoomControl={false}
 				scrollWheelZoom={true}
 			>
 				<TileLayer
-					attribution='Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery &copy; <a href="https://www.mapbox.com/">Mapbox</a>'
-					url="https://api.mapbox.com/styles/v1/larinkirv/ckyllcuwg75jp15pwgjud5ldf/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoibGFyaW5raXJ2IiwiYSI6ImNreWxsOXE1YTM3ZTMyd284czZ3N3hnOWcifQ.-IMprWO32bAuJjJQn_uawA"
+					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 				/>
-				{hotels?.data.map((hotel, index): any => (
-					<Marker
-						key={index}
-						position={[
-							Number(hotel.result_object.latitude),
-							Number(hotel.result_object.longitude),
-						]}
-					>
-						<Popup>
-							<div className="popup__wrapper">
-								<div className="popup__header">{hotel.result_object.name}</div>
-								<div className="popup__image">
-									<img src={hotel.result_object.photo.images.medium.url} />
-								</div>
-								<span className="popup__rating">
-									{hotel.result_object.rating}
-								</span>
-								<div className="popup__adress">
-									<span className="popup__text">Adress:</span>{" "}
-									{hotel.result_object.address}
-								</div>
-								<div className="popup__description">
-									<span className="popup__text">Description:</span>{" "}
-									{hotel?.review_snippet?.snippet}
-								</div>
-							</div>
-						</Popup>
-					</Marker>
-				))}
+				{hotels?.data.map((hotel, index): any => {
+					let latitude = Number(hotel.result_object.latitude);
+					let longitude = Number(hotel.result_object.longitude);
+					return (
+						!isNaN(latitude) &&
+						!isNaN(longitude) && (
+							<Marker key={index} position={[latitude, longitude]}>
+								<Popup>
+									<div className="popup__wrapper">
+										<div className="popup__header">
+											{hotel.result_object.name}
+										</div>
+										<div className="popup__image">
+											<img src={hotel.result_object.photo.images.medium.url} />
+										</div>
+										<span className="popup__rating">
+											{hotel.result_object.rating}
+										</span>
+										<div className="popup__adress">
+											<span className="popup__text">Adress:</span>{" "}
+											{hotel.result_object.address}
+										</div>
+										<div className="popup__description">
+											<span className="popup__text">Description:</span>{" "}
+											{hotel?.review_snippet?.snippet}
+										</div>
+									</div>
+								</Popup>
+							</Marker>
+						)
+					);
+				})}
+				{hotels?.data.map((hotel, index): any => {
+					console.log(
+						hotel.result_object.latitude,
+						hotel.result_object.longitude
+					);
+				})}
 				<ZoomControl position="bottomright" />
 			</MapContainer>
-			<Header setSearch={setSearch}  center={center} />
+			<Header setSearch={setSearch} center={center} />
 		</div>
-		// найди через редюс среднюю широту и долготу
-		// настроить loader, верстка + логика через отрисовку по условию
 	);
 };
 
 export default App;
-
-

@@ -10,10 +10,10 @@ const Header = ({center,setSearch}: CenterProps) => {
   return (
     <header className="header">
       <div className="header__wrapper wrapper">
-        <span className="header__title">Interactive Hotel Map</span>
+        <span className="header__title">Interactive Map</span>
         <label className="header__search">
           <input 
-            placeholder="Enter your location" 
+            placeholder="Enter location, let's find hotels" 
             className="header__input" 
             onChange={(e) => setSearch(e.target.value)}
           />
@@ -29,6 +29,7 @@ const Header = ({center,setSearch}: CenterProps) => {
             </svg>
           </div>
         </label>
+        <div className='header__example'> For example: Berlin or New York</div>
       </div>
     </header>
   );
