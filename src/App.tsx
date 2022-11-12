@@ -8,12 +8,12 @@ import {
 	ZoomControl,
 	useMap,
 	useMapEvents,
-	
 } from "react-leaflet";
 import { Aside } from ".//components/Aside/index";
 import { Header } from "./components/Header";
 import { getHotels } from "./utils/getHotels";
 import useDebounce from "./utils/useDebounce";
+import { Loader } from "./UI/Loader";
 
 interface hotelDataTypes {
 	data: {
@@ -95,7 +95,6 @@ interface hotelDataTypes {
 	sort: any;
 	tracking: { search_id: string };
 }
-
 
 const App = () => {
 	const [center, setCenter] = useState<any>([51.505, -0.09]);
@@ -198,6 +197,7 @@ const App = () => {
 				<ZoomControl position="bottomright" />
 			</MapContainer>
 			<Header setSearch={setSearch} center={center} />
+			{loading && <Loader/>}
 		</div>
 	);
 };
