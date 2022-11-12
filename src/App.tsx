@@ -6,11 +6,12 @@ import {
 	Marker,
 	Popup,
 	ZoomControl,
+	useMap,
+	useMapEvents,
+	
 } from "react-leaflet";
 import { Aside } from ".//components/Aside/index";
 import { Header } from "./components/Header";
-import { getHotelData } from "./getHotelsData";
-
 import { getHotels } from "./utils/getHotels";
 import useDebounce from "./utils/useDebounce";
 
@@ -95,13 +96,14 @@ interface hotelDataTypes {
 	tracking: { search_id: string };
 }
 
+
 const App = () => {
-	const [center, setCenter] = useState<number[]>([51.505, -0.09]);
+	const [center, setCenter] = useState<any>([51.505, -0.09]);
+	const [zoom, setZoom]  = useState<number>(3);
 	const [hotels, setHotels] = useState<hotelDataTypes | null>(null);
 	const [search, setSearch] = useState<string | null>(null);
 	const [loading, setLoading] = useState<boolean>(false);
-	const debouncedSearch = useDebounce(search, 1000);
-	
+	const debouncedSearch = useDebounce(search, 1000);	
 	const calculateCenter = () => {
 		let latArray:number[] = [];
 		let lonArray:number[] = [];
@@ -123,8 +125,8 @@ const App = () => {
 				setHotels(res);
 				setLoading(false);
 				console.log(res.data);
-				setCenter(calculateCenter)
-				console.log(`центр: ` + center)
+				setCenter(calculateCenter())
+				setZoom(15)
 			});
 		} 
 	}, [debouncedSearch]);
@@ -146,8 +148,8 @@ const App = () => {
 	return (
 		<div className="App">
 			<MapContainer
-				center={[51.505, -0.09]}
-				zoom={3}
+				center={center}
+				zoom={zoom}
 				zoomControl={false}
 				scrollWheelZoom={true}
 			>
