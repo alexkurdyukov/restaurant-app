@@ -197,6 +197,7 @@ const App = () => {
 				<ZoomControl position="bottomright" />
 			</MapContainer>
 			<Header setSearch={setSearch} center={center} />
+			<Aside/>
 			{loading && <Loader/>}
 		</div>
 	);
