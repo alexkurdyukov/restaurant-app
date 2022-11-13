@@ -14,8 +14,9 @@ import { Header } from "./components/Header";
 import { getHotels } from "./utils/getHotels";
 import useDebounce from "./utils/useDebounce";
 import { Loader } from "./UI/Loader";
+import { calculateCenter } from "./utils/centerCalculator";
 
-interface hotelDataTypes {
+export interface hotelDataTypes {
 	data: {
 		is_top_result: boolean;
 		result_object: {
@@ -103,19 +104,7 @@ const App = () => {
 	const [search, setSearch] = useState<string | null>(null);
 	const [loading, setLoading] = useState<boolean>(false);
 	const debouncedSearch = useDebounce(search, 1000);	
-	const calculateCenter = () => {
-		let latArray:number[] = [];
-		let lonArray:number[] = [];
-		hotels?.data.forEach(hotel => {
-			latArray.push(Number(hotel.result_object.latitude));
-			lonArray.push(Number(hotel.result_object.longitude));
-		})
-		latArray.sort();
-		lonArray.sort();
-		let latCenter = latArray[latArray.length/2];
-		let lonCenter = lonArray[latArray.length/2];
-		return([latCenter,lonCenter])
-	}
+	
 	
 	useEffect(() => {
 		if (debouncedSearch) {
@@ -124,7 +113,7 @@ const App = () => {
 				setHotels(res);
 				setLoading(false);
 				console.log(res.data);
-				setCenter(calculateCenter())
+				setCenter(calculateCenter(res))
 				setZoom(15)
 			});
 		} 
