@@ -1,5 +1,5 @@
 import React from "react";
-import { hotelDataTypes } from "../App";
+import { hotelDataTypes } from "../types/types";
 
 export const calculateCenter = (hotels:hotelDataTypes) => {
     let latArray:number[] = [];
@@ -12,5 +12,6 @@ export const calculateCenter = (hotels:hotelDataTypes) => {
     lonArray.sort();
     let latCenter = latArray[latArray.length/2];
     let lonCenter = lonArray[latArray.length/2];
+    console.log(latCenter, lonCenter)
     return([latCenter,lonCenter]) 
 }

@@ -1,4 +1,5 @@
 import searchLogo from '../../assets/images/searchIcon.svg'
+import styles from './index.module.scss'
 
 export interface CenterProps {
   center: number[];
@@ -8,13 +9,13 @@ export interface CenterProps {
 
 const Header = ({center,setSearch}: CenterProps) => {
   return (
-    <header className="header">
-      <div className="header__wrapper wrapper">
-        <span className="header__title">Interactive Map</span>
-        <label className="header__search">
+    <header className={styles.header}>
+      <div className={styles.header__wrapper}>
+        <span className={styles.header__title}>Interactive Map</span>
+        <label className={styles.header__search}>
           <input 
             placeholder="Enter location, let's find hotels" 
-            className="header__input" 
+            className={styles.header__input} 
             onChange={(e) => setSearch(e.target.value)}
           />
           <div className="header__search-icon">
@@ -29,7 +30,7 @@ const Header = ({center,setSearch}: CenterProps) => {
             </svg>
           </div>
         </label>
-        <div className='header__example'> For example: Berlin or New York</div>
+        <div className={styles.header__example}> For example: Berlin or New York</div>
       </div>
     </header>
   );
