@@ -33,6 +33,7 @@ const App = () => {
 				setLoading(false);
 				console.log(res.data);
 				setCenter(calculateCenter(res))
+				console.log(res.data)
 				setZoom(15)
 			});
 		} 

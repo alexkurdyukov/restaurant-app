@@ -1,4 +1,52 @@
 .object {
 	padding: 10px;
 	border: 1px solid #02315e;
+	cursor: pointer;
+}
+.hotel{
+	padding: 10px;
+	border: 1px solid #02315e;
+	cursor: pointer;
+	&__wrapper{
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+	&__top{
+		display: flex;
+		gap: 10px;
+	}
+	&__image{
+		width: 250px;
+		height: 250px;
+	}
+	&__info{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 10px;
+		text-align: center;
+	}
+	&__name{
+		font-size: 30px;
+		color: #b9848c;
+		
+	}
+	&__country{
+		width: 100%;
+		font-size: 20px;
+	}
+	&__city{
+		width: 100%;
+		font-size: 20px;
+		margin-bottom: 20px;
+	}
+	&__rating{
+		color: #02315e;
+		font-size: 35px;
+	}
+	&__buttons{
+		display: flex;
+		justify-content: space-evenly;
+	}
 }

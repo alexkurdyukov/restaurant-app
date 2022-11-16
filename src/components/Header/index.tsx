@@ -7,7 +7,7 @@ export interface CenterProps {
   setSearch: (search: string) => void;
 }
 
-const Header = ({center,setSearch}: CenterProps) => {
+const Header = ({setSearch}: CenterProps) => {
   return (
     <header className={styles.header}>
       <div className={styles.header__wrapper}>

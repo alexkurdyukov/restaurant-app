@@ -1,7 +1,7 @@
 import React from "react";
 import { Marker, useMap } from "react-leaflet";
 
-const Marker = ({ hotel }) => {
+const Marker = ({hotel}) => {
 	let latitude = Number(hotel.result_object.latitude);
 	let longitude = Number(hotel.result_object.longitude);
 	return (
