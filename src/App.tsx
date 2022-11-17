@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import ".//assets/scss/index.scss";
 import {
 	MapContainer,
@@ -16,10 +16,11 @@ import useDebounce from "./utils/useDebounce";
 import { Loader } from "./UI/Loader";
 import { calculateCenter } from "./utils/centerCalculator";
 import { hotelDataTypes } from "./types/types";
+import { MapMarker } from "./components/Marker";
 
 
 const App = () => {
-	const [center, setCenter] = useState<any>([51.505, -0.09]);
+	const [center, setCenter] = useState<[number,number]>([51.505, -0.09]);
 	const [zoom, setZoom]  = useState<number>(3);
 	const [hotels, setHotels] = useState<hotelDataTypes | null>(null);
 	const [search, setSearch] = useState<string | null>(null);
@@ -38,7 +39,6 @@ const App = () => {
 			});
 		} 
 	}, [debouncedSearch]);
-	
 	const centerCoordinates = hotels?.data.reduce(
 		(acc: any, currentHotel: any): any => {
 			acc = {
@@ -51,8 +51,7 @@ const App = () => {
 			});
 		},
 		{ lat: 0, lon: 0 }
-	);
-	
+	)
 	return (
 		<div className="App">
 			<MapContainer
@@ -71,29 +70,7 @@ const App = () => {
 					return (
 						!isNaN(latitude) &&
 						!isNaN(longitude) && (
-							<Marker key={index} position={[latitude, longitude]}>
-								<Popup>
-									<div className="popup__wrapper">
-										<div className="popup__header">
-											{hotel.result_object.name}
-										</div>
-										<div className="popup__image">
-											<img src={hotel.result_object.photo.images.medium.url} />
-										</div>
-										<span className="popup__rating">
-											{hotel.result_object.rating}
-										</span>
-										<div className="popup__adress">
-											<span className="popup__text">Adress:</span>{" "}
-											{hotel.result_object.address}
-										</div>
-										<div className="popup__description">
-											<span className="popup__text">Description:</span>{" "}
-											{hotel?.review_snippet?.snippet}
-										</div>
-									</div>
-								</Popup>
-							</Marker>
+							<MapMarker center={center} hotel={hotel}/>
 						)
 					);
 				})}

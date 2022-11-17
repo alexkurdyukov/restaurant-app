@@ -13,5 +13,6 @@ export const calculateCenter = (hotels:hotelDataTypes) => {
     let latCenter = latArray[latArray.length/2];
     let lonCenter = lonArray[latArray.length/2];
     console.log(latCenter, lonCenter)
-    return([latCenter,lonCenter]) 
+    let centerCoordinates: [number,number] = [latCenter, lonCenter]
+    return(centerCoordinates) 
 }
