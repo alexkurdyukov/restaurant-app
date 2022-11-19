@@ -26,6 +26,7 @@ const App = () => {
 	const [search, setSearch] = useState<string | null>(null);
 	const [loading, setLoading] = useState<boolean>(false);
 	const debouncedSearch = useDebounce(search, 1000);	
+	const [filteredHotels, setFilteredHotels] = useState<hotelDataTypes | null>(null)
 	useEffect(() => {
 		if (debouncedSearch) {
 			setLoading(true);
@@ -35,7 +36,9 @@ const App = () => {
 				console.log(res.data);
 				setCenter(calculateCenter(res))
 				console.log(res.data)
-				setZoom(15)
+				let ratingFiltredArray = res.data.filter((element: any) => element.result_object.rating>4)
+				setFilteredHotels(ratingFiltredArray)
+				console.log(ratingFiltredArray)
 			});
 		} 
 	}, [debouncedSearch]);

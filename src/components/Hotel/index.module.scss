@@ -2,11 +2,13 @@
 	padding: 10px;
 	border: 1px solid #02315e;
 	cursor: pointer;
+	transition: 0.4s linear all;
 }
 .hotel{
 	padding: 10px;
 	border: 1px solid #02315e;
 	cursor: pointer;
+	transition: 0.4s linear all;
 	&__wrapper{
 		display: flex;
 		flex-direction: column;

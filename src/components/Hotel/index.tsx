@@ -50,7 +50,7 @@ const Hotel: FC<hotelProps> = ({ hotel, setState, state }) => {
                 {hotel?.result_object?.address_obj?.city}
               </span>
               <div className={styles.hotel__rating}>
-                {hotel.result_object.rating}
+                {hotel?.result_object?.rating}
               </div>
             </div>
           </div>
