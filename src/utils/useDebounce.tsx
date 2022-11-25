@@ -1,6 +1,4 @@
 import react,{useState,useEffect} from 'react'
-//функция по сути переприсваивает тоже самое значение, 
-//но с заданной задержкой при изменении значения value
 
 function useDebounce(value: any, delay: number){
     const [debouncedValue,setDebouncedValue]  = useState(value);   

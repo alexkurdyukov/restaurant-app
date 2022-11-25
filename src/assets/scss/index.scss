@@ -48,38 +48,4 @@ input::-webkit-input-placeholder {
   z-index: 1;
 }
 
-.popup{
-  &__wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    max-width: 600px;
-    font-size: 15px;
-  }
-  &__text{
-    color:#2F70AF;
-  }
-  &__header{
-    font-size:20px;
-    margin-bottom: 5px;
-    text-align: center;
-    color:#2F70AF;
-  }
-  &__image{
-    margin-bottom: 11px;
-    width: 250px;
-    height: 190px;
-  }
-  &__rating{
-    margin-bottom: 10px;
-    color: #B9848C;
-    font-size:22px;
-  }
-  &__adress{
-    margin-bottom: 15px;
-  }
-  &__description{
-    font-size: 15px;
-  }
-}
+

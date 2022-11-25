@@ -18,9 +18,15 @@
 		display: flex;
 		gap: 10px;
 	}
-	&__image{
+	&__imagecontainer{
 		width: 250px;
 		height: 250px;
+		
+	}
+	&__image{
+		width: 250px ; 
+		height: 250px ;
+		margin-bottom: 10px;
 	}
 	&__info{
 		display: flex;
@@ -51,4 +57,5 @@
 		display: flex;
 		justify-content: space-evenly;
 	}
+	
 }

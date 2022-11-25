@@ -4,6 +4,7 @@ import { FC, useState } from "react";
 import classNames from "classnames";
 import { stateProps } from "../Aside";
 import { Button } from "../../UI/Button";
+
 interface hotelProps {
   hotel: any;
   setState: React.Dispatch<React.SetStateAction<stateProps>>;
@@ -21,8 +22,6 @@ const Hotel: FC<hotelProps> = ({ hotel, setState, state }) => {
         className={styles.object}
       >
         <h4 className={styles.object__header}>{hotel?.result_object?.name}</h4>
-        <p className={styles.object__description}></p>
-        <span className={styles.object__description}></span>
       </div>
     );
   } else {

@@ -18,7 +18,6 @@ import { calculateCenter } from "./utils/centerCalculator";
 import { hotelDataTypes } from "./types/types";
 import { MapMarker } from "./components/Marker";
 
-
 const App = () => {
 	const [center, setCenter] = useState<[number,number]>([51.505, -0.09]);
 	const [zoom, setZoom]  = useState<number>(3);
@@ -31,11 +30,10 @@ const App = () => {
 		if (debouncedSearch) {
 			setLoading(true);
 			getHotels(debouncedSearch).then((res: any) => {
-				setHotels(res);
-				setLoading(false);
-				console.log(res.data);
-				setCenter(calculateCenter(res))
-				console.log(res.data)
+				setHotels(res); //fetch data
+				setLoading(false); // change loader's state
+				console.log(res.data); 
+				setCenter(calculateCenter(res)) // calculate center and push it into the state, which will change position of map
 				let ratingFiltredArray = res.data.filter((element: any) => element.result_object.rating>4)
 				setFilteredHotels(ratingFiltredArray)
 				console.log(ratingFiltredArray)

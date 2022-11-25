@@ -1,4 +1,4 @@
-import searchLogo from '../../assets/images/searchIcon.svg'
+
 import styles from './index.module.scss'
 
 export interface CenterProps {
