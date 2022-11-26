@@ -1,12 +1,7 @@
-import { SetStateAction, useState } from "react";
 import { Popup } from "react-leaflet";
 import styles from "./index.module.scss";
 
 const MapPopup = ({ hotel }: any) => {
-	const [text,setText] = useState('')
-	const inputHandler = (event: { target: { value: SetStateAction<string>; }; }) => {
-		setText(event.target.value)
-	}
 	return ( 
 		<Popup>
 			<div className={styles.popup__wrapper}>
@@ -31,7 +26,7 @@ const MapPopup = ({ hotel }: any) => {
 						<div className={styles.popup__info}>
 							We don't have adress. Only coordinates:
 						</div>
-						<div onClick={() => {}} className={styles.popup__coordinates}>
+						<div className={styles.popup__coordinates}>
 							{hotel?.result_object?.latitude}, {hotel?.result_object?.longitude}{" "}
 						</div>
 					</div>

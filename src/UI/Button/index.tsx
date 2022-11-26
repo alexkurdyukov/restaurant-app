@@ -1,26 +1,24 @@
 import React from "react";
-import sliderIcon from "../../assets/images/sliderIcon.svg";
-export interface ButtonTypes {
-  type? : string;
-  children? : React.ReactNode;
+import styles from "./index.module.scss";
+
+export interface ButtonPropsTypes {
+	type?: string;
+	children?: React.ReactNode;
+	hotelPosition?: [number,number];
+	onClick?: void;
 }
 
-const Button = ({ type, children }: ButtonTypes) => {
-  if (type === "filter") {
-    return (
-      <div className="button-container">
-        <button className="button">{children}</button>
-        <div className="button__image-container">
-          <img className='button__image' src={sliderIcon} />
-        </div>
-      </div>
-    );
-  }
-  return (
-    <div className="button-container">
-      <button className="button">{children}</button>
-    </div>
-  );
+const Button = ({ type, children, onClick,hotelPosition }: ButtonPropsTypes) => {
+	return (
+		<div
+			className={`{${styles.button} 
+			${type === "addcard" ? styles.button__addcard : ""} 
+			${type === "removecard" ? styles.button__removecard : ""} 
+			${type === "removecard" ? styles.button__flyto : ""} }`}
+		>
+			<button>{children}</button>
+		</div>
+	);
 };
 
-export { Button }; 
+export { Button };

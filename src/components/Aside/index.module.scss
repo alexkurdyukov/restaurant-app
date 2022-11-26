@@ -43,6 +43,7 @@
 		flex-direction: column;
 		overflow-y: scroll;
 		gap: 5px;
+		width: 100%;
 		&::-webkit-scrollbar {
 			width: 10px;
 		}
@@ -57,6 +58,9 @@
 	}
   &__header {
 		margin-bottom: 10px;
+		display: flex;
+		justify-content: space-evenly;
+		width: 100%;
 	}
 }
 

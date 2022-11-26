@@ -1,18 +1,14 @@
 import styles from "./index.module.scss";
-import { hotelDataTypes } from "../../types/types";
 import { FC, useState } from "react";
-import classNames from "classnames";
-import { stateProps } from "../Aside";
 import { Button } from "../../UI/Button";
 
 interface hotelProps {
   hotel: any;
-  setState: React.Dispatch<React.SetStateAction<stateProps>>;
-  state: stateProps;
 }
 
-const Hotel: FC<hotelProps> = ({ hotel, setState, state }) => {
+const Hotel: FC<hotelProps> = ({hotel}) => {
   const [hotelOpen, setHotelOpen] = useState(false);
+  const hotelPositon:[number,number] = [Number(hotel.result_object.latitude), Number(hotel.result_object.longitude)] 
   if (!hotelOpen) {
     return (
       <div
@@ -61,8 +57,9 @@ const Hotel: FC<hotelProps> = ({ hotel, setState, state }) => {
           </div>
 
           <div className={styles.hotel__buttons}>
-            <Button>Add to favorite cards</Button>
-            <Button>Go to map</Button>
+            <Button type="addcard">Add</Button>
+            <Button type="removecard">Remove</Button>
+            <Button type="flyto" hotelPosition={hotelPositon}>Go to map</Button>
           </div>
         </div>
       </div>

@@ -1,0 +1,23 @@
+.button__container {
+	color: #ffffff;
+	display: flex;
+	align-items: center;
+}
+
+.button {
+	padding: 10px 20px;
+	border: 1px solid #000000;
+	border-radius: 8px;
+	color: #ffffff;
+	font-size: 15px;
+	&__flyto {
+		background-color: #338dc6;
+	}
+	&__removecard {
+		background-color: red;
+		
+	}
+	&__addcard {
+		background-color: green;
+	}
+}
