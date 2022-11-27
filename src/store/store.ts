@@ -1,7 +1,7 @@
 import { legacy_createStore } from "redux";
 
 const defaultState:storeInterface = {
-    cards: [],
+    cards: Array<Object>,
     center: [51.505, -0.09]
 }
 
