@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import cn from "classnames";
 import { hotelDataTypes, hotelType} from "../../types/types";
