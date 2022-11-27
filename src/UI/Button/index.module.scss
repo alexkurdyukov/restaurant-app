@@ -5,19 +5,51 @@
 }
 
 .button {
-	padding: 10px 20px;
-	border: 1px solid #000000;
-	border-radius: 8px;
-	color: #ffffff;
-	font-size: 15px;
 	&__flyto {
 		background-color: #338dc6;
+		padding: 10px 20px;
+		border-radius: 8px;
+		font-size: 15px;
+		color: #000 !important;
+		width:150px;
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
 	}
 	&__removecard {
-		background-color: red;
-		
+		background-color: #b9848c;
+		padding: 2px 10px;
+		border-radius: 8px;
+		font-size: 15px;
+		width:150px;
+		display: flex;
+		align-items:center;
+		justify-content: space-evenly;
+	
 	}
 	&__addcard {
-		background-color: green;
+		background-color: #3DE361;
+		padding: 2px 10px;
+		border-radius: 8px;
+		font-size: 15px;	
+		display: flex;
+		width:150px;
+		align-items: center;
+		justify-content: space-evenly;
 	}
+	&__inner{
+		color: #000;
+	}
+}
+
+.addcard__icon{
+	font-size: 35px;
+	font-weight: 300;
+	color: #000;
+}
+
+
+.flyto__images{
+	width: 40px;
+	height: 40px;
 }

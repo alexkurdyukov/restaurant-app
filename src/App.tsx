@@ -20,6 +20,7 @@ const App = () => {
 	const [filteredHotels, setFilteredHotels] = useState<hotelDataTypes | null>(
 		null
 	);
+	
 	useEffect(() => {
 		if (debouncedSearch) {
 			setLoading(true);
@@ -36,19 +37,6 @@ const App = () => {
 			});
 		}
 	}, [debouncedSearch]);
-	const centerCoordinates = hotels?.data.reduce(
-		(acc: any, currentHotel: any): any => {
-			acc = {
-				lat: acc.lat + Number(currentHotel.result_object.latitude),
-				lon: acc.lon + Number(currentHotel.result_object.longitude),
-			};
-			return (acc = {
-				lat: acc.lat / hotels.data.length,
-				lon: acc.lon / hotels.data.length,
-			});
-		},
-		{ lat: 0, lon: 0 }
-	);
 	return (
 		<div className="App">
 			<MapContainer
@@ -66,7 +54,7 @@ const App = () => {
 					let longitude = Number(hotel.result_object.longitude);
 					return (
 						!isNaN(latitude) &&
-						!isNaN(longitude) && <MapMarker center={center} hotel={hotel} />
+						!isNaN(longitude) && <MapMarker key={index} center={center} hotel={hotel} />
 					);
 				})}
 				<ZoomControl position="bottomright" />

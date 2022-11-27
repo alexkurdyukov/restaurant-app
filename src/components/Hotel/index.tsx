@@ -1,14 +1,25 @@
 import styles from "./index.module.scss";
 import { FC, useState } from "react";
 import { Button } from "../../UI/Button";
+import { useDispatch } from "react-redux";
 
 interface hotelProps {
   hotel: any;
 }
 
-const Hotel: FC<hotelProps> = ({hotel}) => {
+const Hotel: FC<hotelProps> = ({ hotel }) => {
   const [hotelOpen, setHotelOpen] = useState(false);
-  const hotelPositon:[number,number] = [Number(hotel.result_object.latitude), Number(hotel.result_object.longitude)] 
+  const hotelPositon: [number, number] = [
+    Number(hotel.result_object.latitude),
+    Number(hotel.result_object.longitude),
+  ];
+  const dispatch = useDispatch()
+  const addCard = () =>  {
+    dispatch({
+      payload: hotel,
+      type: 'ADD_CARD'
+    })
+  }
   if (!hotelOpen) {
     return (
       <div
@@ -22,12 +33,7 @@ const Hotel: FC<hotelProps> = ({hotel}) => {
     );
   } else {
     return (
-      <div
-        onClick={() => {
-          setHotelOpen(!hotelOpen);
-        }}
-        className={styles.hotel}
-      >
+      <div className={styles.hotel}>
         <div className={styles.hotel__wrapper}>
           <div className={styles.hotel__top}>
             <div className={styles.hotel__imagecontainer}>
@@ -57,9 +63,11 @@ const Hotel: FC<hotelProps> = ({hotel}) => {
           </div>
 
           <div className={styles.hotel__buttons}>
-            <Button type="addcard">Add</Button>
-            <Button type="removecard">Remove</Button>
-            <Button type="flyto" hotelPosition={hotelPositon}>Go to map</Button>
+            <Button addCard={addCard} type="addcard">Add Card</Button>
+            <Button type="removecard">Remove Card</Button>
+            <Button type="flyto" hotelPosition={hotelPositon}>
+              Go to map
+            </Button>
           </div>
         </div>
       </div>

@@ -1,16 +1,18 @@
 import { legacy_createStore } from "redux";
 
 const defaultState:storeInterface = {
-    cards: []
+    cards: [],
+    center: [51.505, -0.09]
 }
 
 interface storeInterface {
-    cards: any
+    cards: any,
+    center: [number, number]
 }
 
 interface actionType {
     type: string;
-    payload: string | number;
+    payload: any;
 }
 
 const reducer = (state = defaultState, action: actionType) => {
@@ -19,6 +21,8 @@ const reducer = (state = defaultState, action: actionType) => {
             return  {...state, cards: [...state.cards, action.payload]}
         case 'REMOVE_CARD':  
              return (state)
+        // case 'CHANGE_CENTER':
+        //     return{...state, center: [action.payload]}
         default:
             return state;
     }
