@@ -1,30 +1,21 @@
 import styles from "./index.module.scss";
 import { FC, useEffect, useState } from "react";
-import { Button } from "../../UI/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { hotelType, storeInterface } from "../../types/types";
-import {
-  addCard,
-  changeCenter,
-  removeCard,
-} from "../../store/actions-creators/setPosition.action-creators";
+import { Button } from "../../UI/Button";
+import { removeCard } from "../../store/actions-creators/setPosition.action-creators";
 
 interface hotelProps {
   hotel: any;
 }
 
-const Hotel: FC<hotelProps> = ({ hotel }) => {
-  const [hotelOpen, setHotelOpen] = useState(false);
+const LikedCard: FC<hotelProps> = ({ hotel }) => {
+  const [likedHotelOpen, setLikedHotelOpen] = useState(false);
   const dispatch = useDispatch();
-  const hotelPositon: number[] = [
-    Number(hotel.result_object.latitude),
-    Number(hotel.result_object.longitude),
-  ];
-  if (!hotelOpen) {
+  if (!likedHotelOpen) {
     return (
       <div
         onClick={() => {
-          setHotelOpen(!hotelOpen);
+          setLikedHotelOpen(!likedHotelOpen);
         }}
         className={styles.object}
       >
@@ -54,37 +45,16 @@ const Hotel: FC<hotelProps> = ({ hotel }) => {
               {hotel?.result_object?.rating}
             </div>
           </div>
-          <button onClick={() => setHotelOpen} className={styles.hotel__closebutton}>Х</button>
         </div>
         <div className={styles.hotel__bottom}>
           <p className={styles.hotel__description}>
             {hotel?.review_snippet?.snippet}
           </p>
         </div>
-        <div className={styles.hotel__buttons}>
-          <Button onClick={() => dispatch(addCard(hotel))} type="addcard">
-            Add
-          </Button>
-          <Button
-            onClick={() =>
-              dispatch(removeCard(Number(hotel.result_object.location_id)))
-            }
-            type="removecard"
-          >
-            Remove
-          </Button>
-          <Button
-            type="flyto"
-            onClick={() =>
-              dispatch(changeCenter(hotelPositon))
-            }
-          >
-            Go to map
-          </Button>
-        </div>
+        <Button onClick={() => dispatch(removeCard(hotel.result_object.location_id))} type="removecard">Remove</Button>
       </div>
     </div>
   );
 };
 
-export { Hotel };
+export { LikedCard };

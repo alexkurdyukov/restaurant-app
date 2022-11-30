@@ -149,3 +149,13 @@ export interface hotelType{
 	result_type: string;
 	scope: string;
 }
+
+export interface storeInterface {
+    cards: any,
+    centerPosition: any;
+}
+
+export interface actionType {
+    type: string;
+    payload: any;
+}

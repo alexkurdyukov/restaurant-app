@@ -56,11 +56,14 @@
 			border: solid 4px transparent;
 		}
 	}
-  &__header {
+  	&__header {
 		margin-bottom: 10px;
 		display: flex;
 		justify-content: space-evenly;
 		width: 100%;
+	}
+	&__active{
+		color: #b9848c;
 	}
 }
 

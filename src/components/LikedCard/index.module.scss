@@ -3,14 +3,12 @@
 	border: 1px solid #02315e;
 	cursor: pointer;
 	transition: 0.4s linear all;
-	height: 45px;
 }
 .hotel{
 	padding: 10px;
 	border: 1px solid #02315e;
 	cursor: pointer;
 	transition: 0.4s linear all;
-	height: 380px;
 	&__wrapper{
 		display: flex;
 		flex-direction: column;
@@ -19,11 +17,11 @@
 	&__top{
 		display: flex;
 		gap: 10px;
-		justify-content: space-between;
 	}
 	&__imagecontainer{
 		width: 250px;
-		height: 250px;	
+		height: 250px;
+		
 	}
 	&__image{
 		width: 250px ; 
@@ -58,12 +56,4 @@
 		display: flex;
 		justify-content: space-evenly;
 	}
-	&__closebutton{
-		align-self: flex-start;
-		font-size: 20px;
-		color: red;
-		padding: 2px 5px;
-		cursor: pointer;
-	}
-
 }

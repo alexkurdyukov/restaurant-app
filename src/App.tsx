@@ -1,69 +1,82 @@
 import { useState, useEffect, useRef } from "react";
-import ".//assets/scss/index.scss";
+import { useSelector } from "react-redux";
 import { MapContainer, TileLayer, ZoomControl } from "react-leaflet";
 import { Aside } from ".//components/Aside/index";
 import { Header } from "./components/Header";
+import { MapMarker } from "./components/Marker";
 import { getHotels } from "./utils/getHotels";
 import useDebounce from "./utils/useDebounce";
-import { Loader } from "./UI/Loader";
 import { calculateCenter } from "./utils/centerCalculator";
-import { hotelDataTypes } from "./types/types";
-import { MapMarker } from "./components/Marker";
+import { Loader } from "./UI/Loader";
+import { hotelDataTypes, hotelType } from "./types/types";
+import ".//assets/scss/index.scss";
+import { RootState } from "./store";
 
 const App = () => {
-	const [center, setCenter] = useState<[number, number]>([51.505, -0.09]);
-	const [zoom, setZoom] = useState<number>(3);
-	const [hotels, setHotels] = useState<hotelDataTypes | null>(null);
-	const [search, setSearch] = useState<string | null>(null);
-	const [loading, setLoading] = useState<boolean>(false);
-	const debouncedSearch = useDebounce(search, 1000);
-	const [filteredHotels, setFilteredHotels] = useState<hotelDataTypes | null>(
-		null
-	);
-	
-	useEffect(() => {
-		if (debouncedSearch) {
-			setLoading(true);
-			getHotels(debouncedSearch).then((res: any) => {
-				setHotels(res); //fetch data
-				setLoading(false); // change loader's state
-				console.log(res.data);
-				setCenter(calculateCenter(res)); // calculate center and push it into the state, which will change position of map
-				let ratingFiltredArray = res.data.filter(
-					(element: any) => element.result_object.rating > 4
-				);
-				setFilteredHotels(ratingFiltredArray);
-				console.log(ratingFiltredArray);
-			});
-		}
-	}, [debouncedSearch]);
-	return (
-		<div className="App">
-			<MapContainer
-				center={center}
-				zoom={zoom}
-				zoomControl={false}
-				scrollWheelZoom={true}
-			>
-				<TileLayer
-					attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-					url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-				/>
-				{hotels?.data.map((hotel, index): any => {
-					let latitude = Number(hotel.result_object.latitude);
-					let longitude = Number(hotel.result_object.longitude);
-					return (
-						!isNaN(latitude) &&
-						!isNaN(longitude) && <MapMarker key={index} center={center} hotel={hotel} />
-					);
-				})}
-				<ZoomControl position="bottomright" />
-			</MapContainer>
-			<Header setSearch={setSearch} center={center} />
-			<Aside hotels={hotels} />
-			{loading && <Loader />}
-		</div>
-	);
+  const [center, setCenter] = useState<[number, number]>([51.505, -0.09]);
+  const [zoom, setZoom] = useState<number>(3);
+  const [hotels, setHotels] = useState<hotelDataTypes | null>(null);
+  const [search, setSearch] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+  const debouncedSearch = useDebounce(search, 1000);
+  const [filteredHotels, setFilteredHotels] = useState<hotelDataTypes | null>(
+    null
+  );
+
+  const centerPosition = useSelector(
+    (state: RootState) => state.setPosition.centerPosition
+  );
+
+  useEffect(() => {
+    console.log(centerPosition);
+  }, [centerPosition]);
+
+  useEffect(() => {
+    if (debouncedSearch) {
+      setLoading(true);
+      getHotels(debouncedSearch).then((res: any) => {
+        setHotels(res); //fetch data
+        setLoading(false); // change loader's state
+        console.log(res.data);
+        setCenter(calculateCenter(res)); // calculate center and push it into the state, which will change position of map
+
+        const ratingFiltredArray = res.data.filter(
+          (element: any) => element.result_object.rating > 4
+        );
+        setFilteredHotels(ratingFiltredArray);
+        // console.log(ratingFiltredArray);
+      });
+    }
+  }, [debouncedSearch]);
+  return (
+    <div className="App">
+      <MapContainer
+        center={centerPosition}
+        zoom={zoom}
+        zoomControl={false}
+        scrollWheelZoom={true}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        {hotels?.data.map((hotel, index): any => {
+          let latitude = Number(hotel.result_object.latitude);
+          let longitude = Number(hotel.result_object.longitude);
+          return (
+            !isNaN(latitude) &&
+            !isNaN(longitude) && (
+              <MapMarker key={index} center={center} hotel={hotel} />
+            )
+          );
+        })}
+        <ZoomControl position="bottomright" />
+      </MapContainer>
+      <Header setSearch={setSearch} center={center} />
+      <Aside hotels={hotels} />
+      {loading && <Loader />}
+    </div>
+  );
 };
 
 export default App;
