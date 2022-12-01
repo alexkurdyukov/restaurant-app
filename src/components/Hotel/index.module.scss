@@ -1,20 +1,23 @@
-.object {
+.preview {
 	padding: 10px;
 	border: 1px solid #02315e;
 	cursor: pointer;
 	transition: 0.4s linear all;
 	height: 45px;
 }
+
 .hotel{
 	padding: 10px;
 	border: 1px solid #02315e;
 	cursor: pointer;
 	transition: 0.4s linear all;
-	height: 380px;
+	height: 367
+	px;
 	&__wrapper{
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
+		justify-content: space-between;
 	}
 	&__top{
 		display: flex;

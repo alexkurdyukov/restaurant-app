@@ -15,7 +15,6 @@ const Aside = ({ hotels }: { hotels: hotelDataTypes | null }) => {
   const dispatch = useDispatch;
   const likedHotels:Array<hotelType> = useSelector((state: any) => state.setPosition.cards);
   const [asidePage, setAsidePage] = useState<'found' | 'favourites'>('found')
-  
   return (
     <div
       className={cn(styles.aside, {
@@ -32,7 +31,6 @@ const Aside = ({ hotels }: { hotels: hotelDataTypes | null }) => {
           {asidePage==='found' && hotels?.data.map((object) => (
             <Hotel key={object.result_object.location_id} hotel={object} />
           ))} 
-          
           {asidePage==='favourites' && likedHotels.length>0 && likedHotels?.map((object) => (
             <LikedCard key={Number(object.result_object.location_id)} hotel={object} />
           ))}
