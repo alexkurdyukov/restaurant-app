@@ -56,11 +56,15 @@
 			border: solid 4px transparent;
 		}
 	}
-  &__header {
+  &__headers {
 		margin-bottom: 15px;
 		display: flex;
 		justify-content: space-evenly;
 		width: 100%;
+		cursor: pointer;	
+	}
+	&__header{
+		padding: 5px 10px;
 	}
 	&__active{
 		color: #b9848c;

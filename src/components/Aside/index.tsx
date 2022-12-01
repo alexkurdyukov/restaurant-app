@@ -12,10 +12,8 @@ export interface stateProps{
 
 const Aside = ({ hotels }: { hotels: hotelDataTypes | null }) => {
   const [asideOpen, setAsideOpen] = useState(false);
-  const dispatch = useDispatch;
   const likedHotels:Array<hotelType> = useSelector((state: any) => state.setPosition.cards);
   const [asidePage, setAsidePage] = useState<'found' | 'favourites'>('found')
-  
   return (
     <div
       className={cn(styles.aside, {
@@ -24,15 +22,14 @@ const Aside = ({ hotels }: { hotels: hotelDataTypes | null }) => {
       })}
     >
       <div className={styles.aside__wrapper}>
-        <div className={styles.aside__header}>
-          <h3 onClick={() => setAsidePage('found')} className={cn(styles.aside__found,{[styles.aside__active]:asidePage ==='found'})}>Found objects</h3>
-          <h3 onClick={() => setAsidePage('favourites')} className={cn(styles.aside__favourites,{[styles.aside__active]:asidePage ==='favourites'})}>Favourites</h3> 
+        <div className={styles.aside__headers}>
+          <h3 onClick={() => setAsidePage('found')} className={cn(styles.aside__header, styles.aside__found,{[styles.aside__active]:asidePage ==='found'})}>Found objects</h3>
+          <h3 onClick={() => setAsidePage('favourites')} className={cn(styles.aside__header, styles.aside__favourites,{[styles.aside__active]:asidePage ==='favourites'})}>Favourites</h3> 
         </div>
         <div className={styles.aside__objects}>
           {asidePage==='found' && hotels?.data.map((object) => (
             <Hotel key={object.result_object.location_id} hotel={object} />
-          ))} 
-          
+          ))}   
           {asidePage==='favourites' && likedHotels.length>0 && likedHotels?.map((object) => (
             <LikedCard key={Number(object.result_object.location_id)} hotel={object} />
           ))}

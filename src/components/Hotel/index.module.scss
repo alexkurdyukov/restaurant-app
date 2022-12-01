@@ -3,14 +3,14 @@
 	border: 1px solid #02315e;
 	cursor: pointer;
 	transition: 0.4s linear all;
-	height: 45px;
+	max-height: 50px;
 }
 .hotel{
 	padding: 10px;
 	border: 1px solid #02315e;
 	cursor: pointer;
 	transition: 0.4s linear all;
-	height: 380px;
+	max-height: 380px;
 	&__wrapper{
 		display: flex;
 		flex-direction: column;

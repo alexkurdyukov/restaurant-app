@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { MapContainer, TileLayer, ZoomControl } from "react-leaflet";
+import { MapContainer, TileLayer, useMap, ZoomControl } from "react-leaflet";
 import { Aside } from ".//components/Aside/index";
 import { Header } from "./components/Header";
 import { MapMarker } from "./components/Marker";
@@ -8,12 +8,11 @@ import { getHotels } from "./utils/getHotels";
 import useDebounce from "./utils/useDebounce";
 import { calculateCenter } from "./utils/centerCalculator";
 import { Loader } from "./UI/Loader";
-import { hotelDataTypes, hotelType } from "./types/types";
+import { hotelDataTypes } from "./types/types";
 import ".//assets/scss/index.scss";
 import { RootState } from "./store";
 
 const App = () => {
-  const [center, setCenter] = useState<[number, number]>([51.505, -0.09]);
   const [zoom, setZoom] = useState<number>(3);
   const [hotels, setHotels] = useState<hotelDataTypes | null>(null);
   const [search, setSearch] = useState<string | null>(null);
@@ -22,36 +21,25 @@ const App = () => {
   const [filteredHotels, setFilteredHotels] = useState<hotelDataTypes | null>(
     null
   );
-
+  const [center, setCenter] = useState<[number, number]>([51.505, -0.09]);
   const centerPosition = useSelector(
     (state: RootState) => state.setPosition.centerPosition
   );
-
-  useEffect(() => {
-    console.log(centerPosition);
-  }, [centerPosition]);
-
   useEffect(() => {
     if (debouncedSearch) {
       setLoading(true);
       getHotels(debouncedSearch).then((res: any) => {
-        setHotels(res); //fetch data
-        setLoading(false); // change loader's state
+        setHotels(res); 
+        setLoading(false); 
         console.log(res.data);
-        setCenter(calculateCenter(res)); // calculate center and push it into the state, which will change position of map
-
-        const ratingFiltredArray = res.data.filter(
-          (element: any) => element.result_object.rating > 4
-        );
-        setFilteredHotels(ratingFiltredArray);
-        // console.log(ratingFiltredArray);
+        setCenter(calculateCenter(res));
       });
     }
   }, [debouncedSearch]);
   return (
     <div className="App">
       <MapContainer
-        center={centerPosition}
+        center={center}
         zoom={zoom}
         zoomControl={false}
         scrollWheelZoom={true}

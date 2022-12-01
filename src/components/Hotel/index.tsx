@@ -2,12 +2,12 @@ import styles from "./index.module.scss";
 import { FC, useEffect, useState } from "react";
 import { Button } from "../../UI/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { hotelType, storeInterface } from "../../types/types";
+
 import {
   addCard,
   changeCenter,
-  removeCard,
 } from "../../store/actions-creators/setPosition.action-creators";
+import { RootState } from "../../store";
 
 interface hotelProps {
   hotel: any;
@@ -65,14 +65,14 @@ const Hotel: FC<hotelProps> = ({ hotel }) => {
           <Button onClick={() => dispatch(addCard(hotel))} type="addcard">
             Add
           </Button>
-          <Button
+          {/* <Button
             onClick={() =>
-              dispatch(removeCard(Number(hotel.result_object.location_id)))
+              dispatch(removeCard((hotel.result_object.location_id)))
             }
             type="removecard"
           >
             Remove
-          </Button>
+          </Button> */}
           <Button
             type="flyto"
             onClick={() =>
@@ -83,7 +83,7 @@ const Hotel: FC<hotelProps> = ({ hotel }) => {
           </Button>
         </div>
       </div>
-    </div>
+    </div> 
   );
 };
 
