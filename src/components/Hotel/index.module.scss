@@ -1,16 +1,35 @@
+.wrapper{
+	display: flex;
+	flex-direction: column;
+	&__active .object{
+		height: 0;
+		opacity: 0;
+		padding: 0;
+		overflow: hidden;
+	}
+	&__active .hotel{
+		height: auto;
+		opacity: 1;
+		padding: 10px;
+		overflow: hidden;
+	}
+}
 .object {
 	padding: 10px;
 	border: 1px solid #02315e;
 	cursor: pointer;
-	transition: 0.4s linear all;
-	max-height: 50px;
+	transition: 0.5s linear all;
+	height: auto;
+	opacity:1;
+	overflow: hidden;
 }
 .hotel{
-	padding: 10px;
 	border: 1px solid #02315e;
 	cursor: pointer;
-	transition: 0.4s linear all;
-	max-height: 380px;
+	transition: 0.5s linear all;
+	height: 0px;
+	opacity: 0;
+	overflow: hidden;
 	&__wrapper{
 		display: flex;
 		flex-direction: column;
@@ -65,5 +84,4 @@
 		padding: 2px 5px;
 		cursor: pointer;
 	}
-
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { MapContainer, TileLayer, useMap, ZoomControl } from "react-leaflet";
 import { Aside } from ".//components/Aside/index";
 import { Header } from "./components/Header";
@@ -11,6 +11,7 @@ import { Loader } from "./UI/Loader";
 import { hotelDataTypes } from "./types/types";
 import ".//assets/scss/index.scss";
 import { RootState } from "./store";
+import { changeCenter } from "./store/actions-creators/setPosition.action-creators";
 
 const App = () => {
   const [zoom, setZoom] = useState<number>(3);
@@ -22,9 +23,8 @@ const App = () => {
     null
   );
   const [center, setCenter] = useState<[number, number]>([51.505, -0.09]);
-  const centerPosition = useSelector(
-    (state: RootState) => state.setPosition.centerPosition
-  );
+
+  const dispatch = useDispatch()
   useEffect(() => {
     if (debouncedSearch) {
       setLoading(true);
@@ -33,6 +33,7 @@ const App = () => {
         setLoading(false); 
         console.log(res.data);
         setCenter(calculateCenter(res));
+        dispatch(changeCenter(calculateCenter(res)))
       });
     }
   }, [debouncedSearch]);
@@ -68,3 +69,7 @@ const App = () => {
 };
 
 export default App;
+function setPosition(): any {
+  throw new Error("Function not implemented.");
+}
+
