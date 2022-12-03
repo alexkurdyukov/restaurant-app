@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { MapContainer, TileLayer, useMap, ZoomControl } from "react-leaflet";
 import { Aside } from ".//components/Aside/index";
 import { Header } from "./components/Header";
@@ -10,7 +10,6 @@ import { calculateCenter } from "./utils/centerCalculator";
 import { Loader } from "./UI/Loader";
 import { hotelDataTypes } from "./types/types";
 import ".//assets/scss/index.scss";
-import { RootState } from "./store";
 import { changeCenter } from "./store/actions-creators/setPosition.action-creators";
 
 const App = () => {

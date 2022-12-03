@@ -17,14 +17,14 @@ const MapMarker = ({ hotel, center }: MapMarkerProps) => {
 	let longitude = Number(hotel.result_object.longitude);
 	const map = useMap();
 	useEffect(() => {
-		map.flyTo(center, 14);
+		map.flyTo(center, 12);
 	}, [center]);
 	const centerPosition = useSelector(
 		(state: RootState) => state.setPosition.centerPosition
 	);
 
 	useEffect(() => {
-		map.flyTo(centerPosition, 14);
+		map.flyTo(centerPosition, 18);
 	}, [centerPosition]);
 
 	return (

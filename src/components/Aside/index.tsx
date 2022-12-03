@@ -13,6 +13,7 @@ export interface stateProps {
 
 const Aside = ({ hotels }: { hotels: hotelDataTypes | null }) => {
   const [asideOpen, setAsideOpen] = useState(false);
+  const [addIndicator, setAddIndicator] = useState(false);
   const likedHotels: Array<hotelType> = useSelector(
     (state: any) => state.setPosition.cards
   );
@@ -46,7 +47,7 @@ const Aside = ({ hotels }: { hotels: hotelDataTypes | null }) => {
         <div className={styles.aside__objects}>
           {asidePage === "found" &&
             hotels?.data.map((object) => (
-              <Hotel key={object.result_object.location_id} hotel={object} />
+              <Hotel setAddIndicator={setAddIndicator} key={object.result_object.location_id} hotel={object} />
             ))}
           {asidePage === "favourites" &&
             likedHotels.length > 0 &&
@@ -56,9 +57,8 @@ const Aside = ({ hotels }: { hotels: hotelDataTypes | null }) => {
                 hotel={object}
               />
             ))}
-            
         </div>
-        {hotels && <AddIndicator/>}
+         {addIndicator && <AddIndicator/>}
       </div>
       <div
         className={styles.aside__button}

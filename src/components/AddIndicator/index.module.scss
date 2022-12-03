@@ -1,13 +1,14 @@
 .addindicator{
     background-color: #000;
     width: 100%;
-    height: 60px;
+    padding: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
     bottom: 10px;
-    animation: indicatorAppearance 2s forwards;
+    animation: indicatorAppearance 4s forwards;
+    z-index: 3;
     &__text{
         font-size: 15px;
         color: #fff;
