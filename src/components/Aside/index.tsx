@@ -45,10 +45,11 @@ const Aside = ({ hotels }: { hotels: hotelDataTypes | null }) => {
           </h3>
         </div>
         <div className={styles.aside__objects}>
-          {asidePage === "found" &&
+          {asidePage === "found" && 
             hotels?.data.map((object) => (
               <Hotel setAddIndicator={setAddIndicator} key={object.result_object.location_id} hotel={object} />
             ))}
+            {asidePage === "found" && addIndicator && <AddIndicator/>}
           {asidePage === "favourites" &&
             likedHotels.length > 0 &&
             likedHotels?.map((object) => (
@@ -58,7 +59,7 @@ const Aside = ({ hotels }: { hotels: hotelDataTypes | null }) => {
               />
             ))}
         </div>
-         {addIndicator && <AddIndicator/>}
+         
       </div>
       <div
         className={styles.aside__button}

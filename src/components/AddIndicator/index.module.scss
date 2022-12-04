@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
+    position: sticky;
     bottom: 10px;
     animation: indicatorAppearance 4s forwards;
     z-index: 3;

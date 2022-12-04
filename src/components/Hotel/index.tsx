@@ -18,7 +18,7 @@ const Hotel: FC<hotelProps> = ({ hotel,setAddIndicator }) => {
 	
 	const showAddIndicator = () => {
 		setAddIndicator(true);
-		setTimeout(() => setAddIndicator(false), 1000);
+		setTimeout(() => setAddIndicator(false), 2000);
 	};
 	const dispatch = useDispatch();
 
