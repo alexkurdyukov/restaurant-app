@@ -2,7 +2,7 @@ import styles from "./index.module.scss";
 import { FC, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Button } from "../../UI/Button";
-import { removeCard } from "../../store/actions-creators/setPosition.action-creators";
+import { removeCard } from "../../store/actions-creators/filter.actions-creators";
 
 interface hotelProps {
 	hotel: any;

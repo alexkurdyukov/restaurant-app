@@ -24,7 +24,7 @@ const MapMarker = ({ hotel, center }: MapMarkerProps) => {
 	);
 
 	useEffect(() => {
-		map.flyTo(centerPosition, 18);
+		map.flyTo(centerPosition, 12);
 	}, [centerPosition]);
 
 	return (

@@ -11,6 +11,7 @@ import { Loader } from "./UI/Loader";
 import { hotelDataTypes } from "./types/types";
 import ".//assets/scss/index.scss";
 import { changeCenter } from "./store/actions-creators/setPosition.action-creators";
+import { fetchData } from "./store/actions-creators/filter.actions-creators";
 
 const App = () => {
   const [zoom, setZoom] = useState<number>(3);
@@ -31,6 +32,7 @@ const App = () => {
         setHotels(res); 
         setLoading(false); 
         console.log(res.data);
+        dispatch(fetchData(res))
         setCenter(calculateCenter(res));
         dispatch(changeCenter(calculateCenter(res)))
       });
@@ -68,7 +70,5 @@ const App = () => {
 };
 
 export default App;
-function setPosition(): any {
-  throw new Error("Function not implemented.");
-}
+
 

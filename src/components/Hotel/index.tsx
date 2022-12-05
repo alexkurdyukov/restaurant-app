@@ -1,21 +1,18 @@
 import styles from "./index.module.scss";
-import { FC, useEffect, useState } from "react";
+import { FC,  useState } from "react";
 import { Button } from "../../UI/Button";
 import { useDispatch } from "react-redux";
-
-import {
-	addCard,
-	changeCenter,
-} from "../../store/actions-creators/setPosition.action-creators";
+import { changeCenter } from "../../store/actions-creators/setPosition.action-creators";
+import { addCard } from "../../store/actions-creators/filter.actions-creators";
 
 interface hotelProps {
 	hotel: any;
-  setAddIndicator: React.Dispatch<React.SetStateAction<boolean>>
+	setAddIndicator: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Hotel: FC<hotelProps> = ({ hotel,setAddIndicator }) => {
+const Hotel: FC<hotelProps> = ({ hotel, setAddIndicator }) => {
 	const [hotelOpen, setHotelOpen] = useState(false);
-	
+
 	const showAddIndicator = () => {
 		setAddIndicator(true);
 		setTimeout(() => setAddIndicator(false), 2000);
@@ -74,20 +71,15 @@ const Hotel: FC<hotelProps> = ({ hotel,setAddIndicator }) => {
 						</p>
 					</div>
 					<div className={styles.hotel__buttons}>
-						<Button onClick={() => {
-              dispatch(addCard(hotel))
-              showAddIndicator()
-            }} type="addcard">
+						<Button
+							onClick={() => {
+								dispatch(addCard(hotel));
+								showAddIndicator();
+							}}
+							type="addcard"
+						>
 							Add
 						</Button>
-						{/* <Button
-            onClick={() =>
-              dispatch(removeCard((hotel.result_object.location_id)))
-            }
-            type="removecard"
-          >
-            Remove
-          </Button> */}
 						<Button
 							type="flyto"
 							onClick={() => dispatch(changeCenter(hotelPositon))}

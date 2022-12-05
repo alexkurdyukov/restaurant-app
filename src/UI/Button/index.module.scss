@@ -26,7 +26,6 @@
 		display: flex;
 		align-items:center;
 		justify-content: space-evenly;
-	
 	}
 	&__addcard {
 		background-color: #3DE361;
@@ -37,6 +36,17 @@
 		width:150px;
 		align-items: center;
 		justify-content: space-evenly;
+	}
+	&__resetfilters{
+		background-color: #fff;
+		padding: 6px 12px;
+		border-radius: 8px;
+		font-size: 15px;	
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+		box-shadow: -2px 4px 8px 0px rgba(34, 60, 80, 0.2) inset;
+		border: 1px solid #999;
 	}
 	&__inner{
 		color: #000;
@@ -53,4 +63,8 @@
 .flyto__images{
 	width: 40px;
 	height: 40px;
+}
+
+.resetfilters__inner{
+	color: #999;
 }
