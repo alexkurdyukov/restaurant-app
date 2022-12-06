@@ -28,7 +28,7 @@
 		top: 35px;
 		display: flex;
 		flex-direction: column;
-		gap: 1px;
+		gap: 2px;
 		transition: 0s ease-in all;
 	}
 	&__element {
@@ -55,13 +55,13 @@
 
 .select__opened .select__list {
 	height: 0;
-	opacity: 0;
+	
 	padding: 0;
-	gap: 0;
+	
 }
 .select__closed .select__list {
 	height: auto;
-	opacity: 1;
+	
 }
 
 .select__opened .select__element {

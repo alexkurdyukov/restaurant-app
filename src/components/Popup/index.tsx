@@ -1,8 +1,8 @@
 import { Popup } from "react-leaflet";
 import styles from "./index.module.scss";
 
-const MapPopup = ({ hotel }: any) => {
-	return ( 
+const MapPopup = ({ hotel }:any ) => {
+	return (
 		<Popup>
 			<div className={styles.popup__wrapper}>
 				<div className={styles.popup__header}>{hotel?.result_object?.name}</div>
@@ -27,7 +27,8 @@ const MapPopup = ({ hotel }: any) => {
 							We don't have adress. Only coordinates:
 						</div>
 						<div className={styles.popup__coordinates}>
-							{hotel?.result_object?.latitude}, {hotel?.result_object?.longitude}{" "}
+							{hotel?.result_object?.latitude},{" "}
+							{hotel?.result_object?.longitude}{" "}
 						</div>
 					</div>
 				)}

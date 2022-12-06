@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styles from "./index.module.scss";
 import cn from "classnames";
 import { hotelDataTypes, hotelType } from "../../types/types";
@@ -8,10 +8,8 @@ import { LikedCard } from "../LikedCard";
 import { AddIndicator } from "../AddIndicator";
 import { Button } from "../../UI/Button";
 import { CustomSelect } from "../../UI/CustomSelect";
-export interface stateProps {
-	name: string;
-	age: number;
-}
+import { resetFilters } from "../../store/actions-creators/filter.actions-creators";
+
 const Aside = ({ hotels }: { hotels: hotelDataTypes | null }) => {
 	const [asideOpen, setAsideOpen] = useState(false);
 	const [addIndicator, setAddIndicator] = useState(false);
@@ -19,6 +17,7 @@ const Aside = ({ hotels }: { hotels: hotelDataTypes | null }) => {
 		(state: any) => state.filters.favourites
 	);
 	const [asidePage, setAsidePage] = useState<"found" | "favourites">("found");
+	const dispatch = useDispatch();
 	return (
 		<div
 			className={cn(styles.aside, {
@@ -46,13 +45,18 @@ const Aside = ({ hotels }: { hotels: hotelDataTypes | null }) => {
 					</h3>
 				</div>
 				{asidePage === "found" && (
-					
 					<div className={styles.filters}>
 						<h4 className={styles.filters__header}>Choose rating</h4>
-						<CustomSelect/>
-						<Button type = "resetfilters">Reset Filters</Button>
+						<CustomSelect />
+						<Button
+							onClick={() => {
+								dispatch(resetFilters());
+							}}
+							type="resetfilters"
+						>
+							Reset Filters
+						</Button>
 					</div>
-					
 				)}
 				<div className={styles.aside__objects}>
 					{asidePage === "found" &&

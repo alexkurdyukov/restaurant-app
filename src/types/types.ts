@@ -159,3 +159,22 @@ export interface actionType {
     type: string;
     payload: any;
 }
+
+export interface CenterProps {
+	center: number[];
+	setCenter?: React.Dispatch<React.SetStateAction<number[]>>;
+	setSearch: (search: string) => void;
+}
+
+export interface ButtonPropsTypes {
+	type?: string;
+	children?: React.ReactNode;
+	hotelPosition?: [number, number];
+	onClick?: any;
+}
+
+export interface inputProps {
+	className: string;
+	children: React.ReactNode;
+	placeholder: string;
+  }

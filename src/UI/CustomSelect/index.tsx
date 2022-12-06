@@ -1,28 +1,27 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./index.module.scss";
 import cn from "classnames";
 import { useDispatch } from "react-redux";
-import { filterCards } from "../../store/actions-creators/filter.actions-creators";
+import {
+	changeRating,
+	filterCards,
+} from "../../store/actions-creators/filter.actions-creators";
 
 const selectList = [
-	{ value: 1, text: "1" },
-	{ value: 2, text: "2" },
-	{ value: 3, text: "3" },
-	{ value: 4, text: "4" },
-	{ value: 5, text: "5" },
+	{ value: 1 },
+	{ value: 2 },
+	{ value: 3 },
+	{ value: 4 },
+	{ value: 5 },
 ];
 
 export const CustomSelect = () => {
-	const [isSelectOpen, setSelectOpen] = useState(false);
-	const [selectText, setSelectText] = useState("rating");
+	const [isSelectOpen, setSelectOpen] = useState(true);
+	const [selectText, setSelectText] = useState(5);
 	const dispatch = useDispatch();
-	useEffect(() => {
-		console.log(isSelectOpen);
-	}, [isSelectOpen]);
 	return (
-		<div className={styles.select}>
+		<div className={styles.select} onClick={() => setSelectOpen(!isSelectOpen)}>
 			<div
-				onClick={() => setSelectOpen(!isSelectOpen)}
 				className={cn(
 					styles.select__wrapper,
 					{ [styles.select__opened]: isSelectOpen },
@@ -35,16 +34,15 @@ export const CustomSelect = () => {
 						<div className={styles.select__triangle}></div>
 					</div>
 				</div>
-
 				{isSelectOpen && (
 					<div className={styles.select__list}>
 						{selectList.map((select) => (
 							<span
 								key={select.value}
 								onClick={() => {
-									setSelectOpen(!isSelectOpen);
-									setSelectText(select.text);
-									dispatch(filterCards(parseInt(selectText)));
+									setSelectText(select.value);
+									dispatch(changeRating(select.value));
+									dispatch(filterCards());
 								}}
 								className={styles.select__element}
 							>

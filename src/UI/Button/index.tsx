@@ -1,15 +1,8 @@
-import React from "react";
 import styles from "./index.module.scss";
 import markerIcon from "../../assets/images/markerIcon.png";
 import removeIcon from "../../assets/images/removeIcon.png";
 import cn from "classnames";
-
-export interface ButtonPropsTypes {
-	type?: string;
-	children?: React.ReactNode;
-	hotelPosition?: [number, number];
-	onClick?: any;
-}
+import { ButtonPropsTypes } from "../../types/types";
 
 const Button = ({ type, children, onClick }: ButtonPropsTypes) => {
 	if (type) {

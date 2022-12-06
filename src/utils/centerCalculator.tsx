@@ -1,4 +1,3 @@
-import React from "react";
 import { hotelDataTypes } from "../types/types";
 
 export const calculateCenter = (hotels:hotelDataTypes) => {

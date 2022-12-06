@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
-import { MapContainer, TileLayer, useMap, ZoomControl } from "react-leaflet";
+import { changeCenter } from "./store/actions-creators/setPosition.action-creators";
+import { fetchData } from "./store/actions-creators/filter.actions-creators";
+import { RootState } from "./store";
+
+import { MapContainer, TileLayer, ZoomControl } from "react-leaflet";
 import { Aside } from ".//components/Aside/index";
 import { Header } from "./components/Header";
 import { MapMarker } from "./components/Marker";
+
 import { getHotels } from "./utils/getHotels";
 import useDebounce from "./utils/useDebounce";
 import { calculateCenter } from "./utils/centerCalculator";
 import { Loader } from "./UI/Loader";
+
 import { hotelDataTypes } from "./types/types";
 import ".//assets/scss/index.scss";
-import { changeCenter } from "./store/actions-creators/setPosition.action-creators";
-import { fetchData } from "./store/actions-creators/filter.actions-creators";
-import { RootState } from "./store";
 
 const App = () => {
 	const [zoom, setZoom] = useState<number>(3);
@@ -20,9 +24,8 @@ const App = () => {
 	const [search, setSearch] = useState<string | null>(null);
 	const [loading, setLoading] = useState<boolean>(false);
 	const debouncedSearch = useDebounce(search, 1000);
-	// const filtredData = useSelector((state: RootState) => state.filters.filtredCards)
 	const store = useSelector((state: RootState) => state.filters);
-	console.log(store);
+	useEffect(() => {console.log(store);}, [store])
 	const [center, setCenter] = useState<[number, number]>([51.505, -0.09]);
 	const dispatch = useDispatch();
 	useEffect(() => {

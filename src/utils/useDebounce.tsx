@@ -1,4 +1,5 @@
 import react,{useState,useEffect} from 'react'
+import { hotelDataTypes } from '../types/types';
 
 function useDebounce(value: any, delay: number){
     const [debouncedValue,setDebouncedValue]  = useState(value);   

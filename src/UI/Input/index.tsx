@@ -1,11 +1,5 @@
-import React, { useState } from "react";
-import searchIcon from '../../assets/images/searchIcon.svg'
-
-interface inputProps {
-  className: string;
-  children: React.ReactNode;
-  placeholder: string;
-}
+import  { useState } from "react";
+import { inputProps } from "../../types/types";
 
 const Input = ({ className, children, placeholder }: inputProps) => {
   const [value, setValue] = useState<string>("");
