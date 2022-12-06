@@ -12,7 +12,6 @@ export interface stateProps {
 	name: string;
 	age: number;
 }
-
 const Aside = ({ hotels }: { hotels: hotelDataTypes | null }) => {
 	const [asideOpen, setAsideOpen] = useState(false);
 	const [addIndicator, setAddIndicator] = useState(false);

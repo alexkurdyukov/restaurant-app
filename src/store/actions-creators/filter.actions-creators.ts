@@ -18,9 +18,9 @@ export const removeCard = (id: number) => ({
   payload: id
 })
 
-export const filterCards = (id: number) => ({
+export const filterCards = (rating: number) => ({
     type: FILTER_CARDS,
-    payload: id,
+    payload: rating,
   })
 
   export const resetFilters = () => ({

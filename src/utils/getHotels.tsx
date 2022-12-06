@@ -1,9 +1,8 @@
-import { createUnparsedSourceFile } from "typescript";
-
 const options = {
 	method: "GET",
 	headers: {
-		"X-RapidAPI-Key": "3c2a94143amshe8df28fbd7bf5efp1999a4jsn610312e6d0e4",
+		"X-RapidAPI-Key": "5dac77ef2amsh8eb3f04c38b7ddep18ae4ejsn6efe878d52c6",
+
 		"X-RapidAPI-Host": "travel-advisor.p.rapidapi.com",
 	},
 };
