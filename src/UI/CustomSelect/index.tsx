@@ -5,9 +5,11 @@ import { useDispatch } from "react-redux";
 import {
 	changeRating,
 	filterCards,
+	resetFilters,
 } from "../../store/actions-creators/filter.actions-creators";
 
 const selectList = [
+	{ value: "ALL" },
 	{ value: 1 },
 	{ value: 2 },
 	{ value: 3 },
@@ -16,8 +18,8 @@ const selectList = [
 ];
 
 export const CustomSelect = () => {
-	const [isSelectOpen, setSelectOpen] = useState(true);
-	const [selectText, setSelectText] = useState(5);
+	const [isSelectOpen, setSelectOpen] = useState(false);
+	const [selectText, setSelectText] = useState<number | string>(5);
 	const dispatch = useDispatch();
 	return (
 		<div className={styles.select} onClick={() => setSelectOpen(!isSelectOpen)}>
@@ -37,6 +39,19 @@ export const CustomSelect = () => {
 				{isSelectOpen && (
 					<div className={styles.select__list}>
 						{selectList.map((select) => (
+							select.value === 'ALL'? 
+							<span
+								key={select.value}
+								onClick={() => {
+									setSelectText(select.value);
+									dispatch(changeRating(select.value));
+									dispatch(resetFilters())
+								}}
+								className={styles.select__element}
+							>
+								&ge; {select.value}
+							</span>
+							: 
 							<span
 								key={select.value}
 								onClick={() => {

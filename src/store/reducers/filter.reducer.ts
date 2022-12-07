@@ -1,3 +1,4 @@
+import { filterCards } from "./../actions-creators/filter.actions-creators";
 import { CHANGE_RATING } from "./../actions/filter.actions";
 import { hotelType } from "../../types/types";
 import {
@@ -33,7 +34,7 @@ export const filterReducer = (
 ) => {
 	switch (action.type) {
 		case FETCH_DATA:
-			return { ...state, data: action.payload };
+			return { ...state, data: action.payload, filtredCards: action.payload };
 		case ADD_CARD:
 			return { ...state, favourites: [...state.favourites, action.payload] };
 		case REMOVE_CARD:
@@ -54,7 +55,7 @@ export const filterReducer = (
 				),
 			};
 		case RESET_FILTERS:
-			return { ...state, filtredCards: state.data };
+			return { ...state, rating: 0, filtredCards: state.data };
 		default:
 			return state;
 	}

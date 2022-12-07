@@ -24,7 +24,7 @@ export const removeCard = (id: number) => ({
 	payload: id,
 });
 
-export const changeRating = (rating: number) => ({
+export const changeRating = (rating: number | string) => ({
 	type: CHANGE_RATING,
 	payload: rating,
 })

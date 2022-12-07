@@ -9,8 +9,9 @@ import { AddIndicator } from "../AddIndicator";
 import { Button } from "../../UI/Button";
 import { CustomSelect } from "../../UI/CustomSelect";
 import { resetFilters } from "../../store/actions-creators/filter.actions-creators";
+import { RootState } from "../../store";
 
-const Aside = ({ hotels }: { hotels: hotelDataTypes | null }) => {
+const Aside = ({ hotels }: { hotels: Array<hotelType>| null }) => {
 	const [asideOpen, setAsideOpen] = useState(false);
 	const [addIndicator, setAddIndicator] = useState(false);
 	const likedHotels: Array<hotelType> = useSelector(
@@ -60,7 +61,7 @@ const Aside = ({ hotels }: { hotels: hotelDataTypes | null }) => {
 				)}
 				<div className={styles.aside__objects}>
 					{asidePage === "found" &&
-						hotels?.data.map((object) => (
+						hotels && hotels.map((object: hotelType) => (
 							<Hotel
 								setAddIndicator={setAddIndicator}
 								key={object.result_object.location_id}
