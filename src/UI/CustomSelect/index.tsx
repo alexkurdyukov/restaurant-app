@@ -39,25 +39,16 @@ export const CustomSelect = () => {
 				{isSelectOpen && (
 					<div className={styles.select__list}>
 						{selectList.map((select) => (
-							select.value === 'ALL'? 
 							<span
 								key={select.value}
 								onClick={() => {
 									setSelectText(select.value);
 									dispatch(changeRating(select.value));
-									dispatch(resetFilters())
-								}}
-								className={styles.select__element}
-							>
-								&ge; {select.value}
-							</span>
-							: 
-							<span
-								key={select.value}
-								onClick={() => {
-									setSelectText(select.value);
-									dispatch(changeRating(select.value));
-									dispatch(filterCards());
+									if (select.value === "ALL") {
+										dispatch(resetFilters());
+									} else {
+										dispatch(filterCards());
+									}
 								}}
 								className={styles.select__element}
 							>

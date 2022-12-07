@@ -2,14 +2,13 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styles from "./index.module.scss";
 import cn from "classnames";
-import { hotelDataTypes, hotelType } from "../../types/types";
+import { hotelType } from "../../types/types";
 import { Hotel } from "../Hotel";
 import { LikedCard } from "../LikedCard";
 import { AddIndicator } from "../AddIndicator";
 import { Button } from "../../UI/Button";
 import { CustomSelect } from "../../UI/CustomSelect";
 import { resetFilters } from "../../store/actions-creators/filter.actions-creators";
-import { RootState } from "../../store";
 
 const Aside = ({ hotels }: { hotels: Array<hotelType>| null }) => {
 	const [asideOpen, setAsideOpen] = useState(false);
