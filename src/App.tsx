@@ -40,7 +40,6 @@ const App = () => {
 			setLoading(true);
 			getHotels(debouncedSearch).then((res: any) => {
 				dispatch(resetFilters());
-				// setHotels(res);
 				setLoading(false);
 				console.log(res.data);
 				dispatch(fetchData(res.data));
@@ -72,7 +71,6 @@ const App = () => {
 							)
 						);
 					})}
-
 					<ZoomControl position="bottomright" />
 				</MapContainer>
 				<Header setSearch={setSearch} center={center} />

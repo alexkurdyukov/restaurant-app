@@ -10,17 +10,4 @@ export const calculateCenter = (hotels: hotelDataTypes) => {
     let hotelsLength = hotels.data.length
     let centerCoordinates: [number, number] = [Number(sortedHotels[hotelsLength/2].result_object.latitude),Number(sortedHotels[hotelsLength/2].result_object.longitude)]
     return centerCoordinates
-	// let latArray:number[] = [];
-	// let lonArray:number[] = [];
-	// hotels.data.forEach(hotel => {
-	//     latArray.push(Number(hotel.result_object.latitude));
-	//     lonArray.push(Number(hotel.result_object.longitude));
-	// })
-	// latArray.sort();
-	// lonArray.sort();
-	// let latCenter = latArray[latArray.length/2];
-	// let lonCenter = lonArray[latArray.length/2];
-	// console.log(latCenter, lonCenter)
-	// let centerCoordinates: [number,number] = [latCenter, lonCenter]
-	// return(centerCoordinates)
 };

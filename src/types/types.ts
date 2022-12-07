@@ -3,6 +3,10 @@ export interface hotelDataTypes {
 		is_top_result: boolean;
 		result_object: {
 			address: string;
+			address_obj:{
+				city: string;
+				country: string;
+			};
 			ancestors: object[];
 			awards: [];
 			category: any;
@@ -82,6 +86,7 @@ export interface hotelDataTypes {
 export interface hotelType{
 	is_top_result: boolean;
 	result_object: {
+		address_obj: any;
 		address: string;
 		ancestors: object[];
 		awards: [];

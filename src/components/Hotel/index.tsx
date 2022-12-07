@@ -1,28 +1,46 @@
 import styles from "./index.module.scss";
-import { FC,  useState } from "react";
+import { FC, useState } from "react";
 import { Button } from "../../UI/Button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changeCenter } from "../../store/actions-creators/setPosition.action-creators";
 import { addCard } from "../../store/actions-creators/filter.actions-creators";
+import { RootState } from "../../store";
+import { hotelType } from "../../types/types";
 
 interface hotelProps {
-	hotel: any;
+	hotel: hotelType;
 	setAddIndicator: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Hotel: FC<hotelProps> = ({ hotel, setAddIndicator }) => {
 	const [hotelOpen, setHotelOpen] = useState(false);
+	const dispatch = useDispatch();
 
 	const showAddIndicator = () => {
 		setAddIndicator(true);
 		setTimeout(() => setAddIndicator(false), 2000);
 	};
-	const dispatch = useDispatch();
+
+	const favouritesCards = useSelector(
+		(state: RootState) => state.filters.favourites
+	);
+
+	const checkRecurringCard = () => {
+		const id = Number(hotel.result_object.location_id);
+		let flag = true;
+		favouritesCards.forEach((card: hotelType) => {
+			if (Number(card.result_object.location_id) === id) {
+				flag = false;
+			}
+		});
+		return flag;
+	};
 
 	const hotelPositon: number[] = [
 		Number(hotel.result_object.latitude),
 		Number(hotel.result_object.longitude),
 	];
+
 	return (
 		<div
 			className={`${styles.wrapper} ${hotelOpen ? styles.wrapper__active : ""}`}
@@ -73,8 +91,12 @@ const Hotel: FC<hotelProps> = ({ hotel, setAddIndicator }) => {
 					<div className={styles.hotel__buttons}>
 						<Button
 							onClick={() => {
-								dispatch(addCard(hotel));
-								showAddIndicator();
+								if (checkRecurringCard()) {
+									dispatch(addCard(hotel));
+									showAddIndicator();
+								} else {
+									console.log("Карта уже добавлена");
+								}
 							}}
 							type="addcard"
 						>
