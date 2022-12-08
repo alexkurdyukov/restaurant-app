@@ -54,7 +54,7 @@ const Aside = ({ hotels }: { hotels: Array<hotelType>| null }) => {
 							}}
 							type="resetfilters"
 						>
-							Reset Filters
+							Reset 
 						</Button>
 					</div>
 				)}

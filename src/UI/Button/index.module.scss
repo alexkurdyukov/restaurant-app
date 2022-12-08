@@ -16,6 +16,10 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-evenly;
+		@media (max-width: 800px){
+			width: 100px;
+			padding: 5px 10px;
+		}
 	}
 	&__removecard {
 		background-color: #b9848c;
@@ -26,6 +30,10 @@
 		display: flex;
 		align-items:center;
 		justify-content: space-evenly;
+		@media (max-width: 800px){
+			width: 100px;
+			padding: 5px 10px;
+		}
 	}
 	&__addcard {
 		background-color: #3DE361;
@@ -36,6 +44,10 @@
 		width:150px;
 		align-items: center;
 		justify-content: space-evenly;
+		@media (max-width: 800px){
+			width: 100px;
+			padding: 5px 10px;
+		}
 	}
 	&__resetfilters{
 		background-color: #fff;
@@ -52,6 +64,13 @@
 		transition: 0.2s ease-in all;
 		&:hover{
 			color: #b9848c; 
+		}
+		@media (max-width: 1200px) {
+			font-size: 15px;
+			padding: 5px 10px;
+		}
+		@media (max-width: 800px){
+			display: none;
 		}
 	}
 	&__inner{
