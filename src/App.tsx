@@ -31,9 +31,6 @@ const App = () => {
 
 	const dispatch = useDispatch();
 	const store = useSelector((state: RootState) => state.filters);
-	useEffect(() => {
-		console.log(store);
-	}, [store]);
 
 	useEffect(() => {
 		if (debouncedSearch) {
@@ -44,7 +41,7 @@ const App = () => {
 				console.log(res.data);
 				dispatch(fetchData(res.data));
 				setCenter(calculateCenter(res));
-				dispatch(changeCenter(calculateCenter(res)));
+				dispatch(changeCenter(calculateCenter(res)))
 			});
 		}
 	}, [debouncedSearch]);
