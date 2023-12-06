@@ -12,7 +12,7 @@ export interface stateProps{
 
 const Aside = ({ hotels }: { hotels: hotelDataTypes | null }) => {
   const [asideOpen, setAsideOpen] = useState(false);
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
   const likedHotels:Array<hotelType> = useSelector((state: any) => state.setPosition.cards);
   const [asidePage, setAsidePage] = useState<'found' | 'favourites'>('found')
   return (

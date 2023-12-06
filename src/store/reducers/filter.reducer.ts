@@ -1,6 +1,6 @@
 const defaultState:storeInterface = {
     cards: [],
-    centerPosition: [51.505, -0.09]
+    centerPosition: []
 }
 
 interface storeInterface {
